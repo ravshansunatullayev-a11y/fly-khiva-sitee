@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-key="planes_title">Информация о самолетах</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: rgba(25, 118, 210, 0.9);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      animation: slideDown 1.2s ease;
+      position: relative;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Кнопка Назад */
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 16px;
+      background-color:white;
+      color: rgba(25, 118, 210, 0.9);
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .back-button:hover {
+      background-color: #005fa3;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeUp 1.2s forwards;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.3s; }
+    .card:nth-child(2) { animation-delay: 0.6s; }
+    .card:nth-child(3) { animation-delay: 0.9s; }
+
+    @keyframes fadeUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .card img {
+      width: 100%;
+      max-height: 220px;   /* ограничиваем по высоте, но не режем */
+      object-fit: contain; /* картинка помещается полностью */
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: #fff;    /* фон, если картинка не заполняет весь блок */
+      padding: 10px;       /* немного "воздуха" вокруг */
+      box-sizing: border-box;
+    }
+
+
+    .card h2 {
+      text-align: center;
+      color: #003366;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      margin: 8px 0;
+      padding: 6px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .card ul li:last-child {
+      border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+      .container { grid-template-columns: 1fr; }
+      .back-button {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header data-key="planes_title">
+    <a href="index.html" class="back-button">⬅ Назад</a>
+    Информация о самолетах
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <img src="images/AIRBUS A330-200F.png" alt="BOEING 767-300 BCF">
+      <h2>BOEING 767-300 BCF</h2>
+      <ul>
+        <li><b data-key="crew">Экипаж:</b> 2–6 человек</li>
+        <li><b data-key="mtow">Максимальная взлетная масса:</b> 184 249 кг</li>
+        <li><b data-key="payload">Полезная нагрузка:</b> до 56 000 кг</li>
+        <li><b data-key="cargo">Объем грузового отсека:</b> 400 м³</li>
+        <li><b data-key="range">Дальность полета:</b> до 11 070 км</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="images/BOEING 757-300.png" alt="BOEING 757-300">
+      <h2>BOEING 757-300</h2>
+      <ul>
+        <li><b data-key="crew">Экипаж:</b> 2–4 пилота</li>
+        <li><b data-key="attendants">Бортпроводники:</b> 5–7</li>
+        <li><b data-key="payload">Грузоподъемность:</b> 5 000 кг</li>
+        <li><b data-key="mtow">Максимальная взлетная масса:</b> 123 830 кг</li>
+        <li><b data-key="seats">Всего мест:</b> 225 (эконом — 203, бизнес — 22)</li>
+        <li><b data-key="pitch">Шаг кресел:</b> Эконом — 32", Бизнес — 40"</li>
+        <li><b data-key="screens">Индивидуальные экраны:</b> Да</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <img src="images/AIRBUS A330-200F.png" alt="AIRBUS A330-200F">
+      <h2>AIRBUS A330-200F</h2>
+      <ul>
+        <li><b data-key="crew">Экипаж:</b> 2 пилота</li>
+        <li><b data-key="mtow">Максимальная взлетная масса:</b> 233 000 кг</li>
+        <li><b data-key="payload">Полезная нагрузка:</b> до 50 000 кг</li>
+        <li><b data-key="cargo">Объем грузового отсека:</b> 475 м³</li>
+        <li><b data-key="range">Дальность полета:</b> до 7 400 км</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="lang.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Маршрут самолёта</title>
+<style>
+  body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef3f9 url("images/world-map.png") no-repeat center/cover;
+  }
+
+  /* Кнопка назад */
+  .back-btn {
+    display:inline-block;
+    margin:15px;
+    padding:10px 16px;
+    background:#0073e6;
+    color:#fff;
+    text-decoration:none;
+    border-radius:6px;
+    font-size:14px;
+    font-weight:bold;
+    transition:background 0.3s ease;
+    box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  }
+  .back-btn:hover { background:#005bb5; }
+
+  .map-wrap {
+    position:relative;
+    width:100%;
+    max-width:1600px;
+    margin:20px auto;
+    aspect-ratio:2.1/1;
+    background-image:url('images/world-map.png'); 
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  }
+
+  .dot {
+    position:absolute;
+    transform:translate(-50%,-50%);
+    z-index:5;
+  }
+  .dot::before {
+    content:"";
+    position:absolute;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:#e60000;
+    box-shadow:0 0 20px 12px rgba(230,0,0,0.25);
+    transform:translate(-50%,-50%);
+    left:50%; top:50%;
+  }
+  .label {
+    position:absolute;
+    top:-22px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.95);
+    padding:3px 8px;
+    border-radius:6px;
+    font-size:13px;
+    font-weight:bold;
+    white-space:nowrap;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .plane {
+    position:absolute;
+    width:36px;
+    height:36px;
+    background:url("images/airplaneee.png") no-repeat center/contain;
+    transform:translate(-50%,-50%) rotate(0deg);
+    z-index:10;
+    transition: left 3s ease-in-out, top 3s ease-in-out, transform 1.2s ease-in-out;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+  }
+
+  svg.route-line {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:visible;
+    z-index:3;
+  }
+  .route-path {
+    fill:none;
+    stroke:red;
+    stroke-width:2;
+    stroke-dasharray:1000;
+    stroke-dashoffset:1000;
+    animation: drawPath 14s linear forwards;
+  }
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← Назад</a>
+
+<div class="map-wrap" id="map">
+  <svg class="route-line">
+    <path id="routePath" class="route-path" d=""/>
+  </svg>
+
+  <!-- Города -->
+  <div class="dot" style="left:25%; top:32%;"><div class="label">London</div></div>
+  <div class="dot" style="left:35%; top:28%;"><div class="label">Belgium</div></div>
+  <div class="dot" style="left:48%; top:40%;"><div class="label">Istanbul</div></div>
+  <div class="dot" style="left:58%; top:38%;"><div class="label">Tbilisi</div></div>
+  <div class="dot" style="left:60%; top:44%;"><div class="label">Batumi</div></div>
+  <div class="dot" style="left:75%; top:36%;"><div class="label">Issyk-Kul</div></div>
+  <div class="dot" style="left:55%; top:60%;"><div class="label">Sharm El-Sheikh</div></div>
+  <div class="dot" style="left:65%; top:58%;"><div class="label">Madina</div></div>
+
+  <!-- Самолёт -->
+  <div class="plane" id="plane"></div>
+</div>
+
+<script>
+const route = [
+  {x:"25%", y:"32%"}, 
+  {x:"35%", y:"28%"}, 
+  {x:"48%", y:"40%"}, 
+  {x:"58%", y:"38%"}, 
+  {x:"60%", y:"44%"}, 
+  {x:"75%", y:"36%"}, 
+  {x:"55%", y:"60%"}, 
+  {x:"65%", y:"58%"}  
+];
+
+const plane = document.getElementById("plane");
+const routePath = document.getElementById("routePath");
+
+// Построение линии
+function buildPath(points) {
+  let d = `M ${points[0].x} ${points[0].y}`;
+  for (let j=1; j<points.length; j++) {
+    d += ` L ${points[j].x} ${points[j].y}`;
+  }
+  return d;
+}
+routePath.setAttribute("d", buildPath(route));
+
+let i = 0;
+function movePlane() {
+  const point = route[i];
+  const next = route[(i+1)%route.length];
+
+  plane.style.left = point.x;
+  plane.style.top = point.y;
+
+  const px = parseFloat(point.x), py = parseFloat(point.y);
+  const nx = parseFloat(next.x), ny = parseFloat(next.y);
+  const dx = nx - px, dy = ny - py;
+  const angle = Math.atan2(dy, dx) * (180/Math.PI);
+
+  setTimeout(()=>{
+    plane.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
+    plane.style.left = next.x;
+    plane.style.top = next.y;
+    i = (i+1)%route.length;
+    setTimeout(movePlane, 3200);
+  },300);
+}
+
+movePlane();
+</script>
+</body>
+</html>

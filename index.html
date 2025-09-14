@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fly Khiva Agency</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url(images/ChatGPT\ Image\ 11\ сент.\ 2025\ г.\,\ 13_23_35.png);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Хедер */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 25px;
+      background: #ffffff; /* белый */
+      border-bottom: 2px solid #e0e0e0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 65px;
+      color: #003366;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .logo b {
+      font-size: 20px;
+      color: #003366;
+    }
+
+    .logo span {
+      font-size: 14px;
+      color: #666;
+    }
+
+    nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #003366;
+      font-size: 18px;        /* увеличил размер текста */
+      font-weight: 600;       /* сделал толще */
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      color: #0073e6;
+      transform: scale(1.08);
+    }
+
+    .lang-select {
+      font-size: 14px;
+      padding: 4px 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    /* Центральный блок */
+    .hero {
+      flex: 1;
+      background: url("/images/ChatGPT\ Image\ 11\ сент.\ 2025\ г.\,\ 13_23_35.png") no-repeat center/cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      height: 70vh;
+    }
+
+    .hero h1 {
+      position: absolute;
+      top: -100px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #003366;
+      background: rgba(255,255,255,0.85);
+      padding: 12px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      animation: slideDown 2s ease-out forwards;
+    }
+
+    @keyframes slideDown {
+      from { top: -100px; opacity: 0; }
+      to { top: 80px; opacity: 1; }
+    }
+
+    /* Кнопка назад */
+    .back-btn {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 18px;
+      background: #0073e6;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #005bb5;
+    }
+
+    /* Футер */
+    footer {
+      background: #ffffff; /* белый */
+      border-top: 2px solid #e0e0e0;
+      text-align: center;
+      padding: 18px 10px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #003366;
+    }
+
+    footer h2 {
+      font-size: 19px;
+      margin: 5px 0 10px 0;
+      font-weight: 700;
+      color: #0073e6;
+    }
+
+    footer .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    footer .contact-block span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;  /* толще текст */
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <b id="logo-title">Fly Khiva Agency</b>
+      <span id="logo-sub">Отдел логистики</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="planes.html">Самолёты</a></li>
+        <li><a href="destination.html">Направления</a></li>
+        <li><a href="services.html">Услуги</a></li>
+        <li><a href="#">Наши работы</a></li>
+        <li><a href="contact.html">Запросить ставку</a></li>
+      </ul>
+    </nav>
+
+    <select id="language" class="lang-select">
+      <option value="ru">RU</option>
+      <option value="en">EN</option>
+      <option value="uz">UZ</option>
+    </select>
+  </header>
+
+  <!-- Центральный блок -->
+  <section class="hero">
+    <h1>Fly Khiva Agency — Отдел логистики</h1>
+  </section>
+
+  <!-- Футер -->
+  <footer>
+    <h2>Контактная информация</h2>
+    <p><strong>Наш контакт-центр работает с 9:00 до 18:00.</strong></p>
+    <div class="contact-block">
+      <span>📞 +998 99 609 90 99</span>
+      <span>📧 kh.djuraev@flyagency.uz</span>
+      <span>📍 г. Ташкент, Nukus ko'chasi 91/1</span>
+    </div>
+  </footer>
+</body>
+</html>
